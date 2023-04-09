@@ -63,7 +63,7 @@ if [ "${initial}x" = "x" ] ; then
     git add PKGBUILD .SRCINFO
     git commit -m "Released $new_ver"
     git push -u origin release/$new_ver
-    curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $TOKEN" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/reposilite-playground/reposilite-aur/pulls -d "{\"title\":\"Bump version to $new_ver\",\"body\":\"Bump version to $new_ver\",\"head\":\"release/$new_ver\",\"base\":\"master\",\"draft\":true}"
+    gh pr create --title "Bump version to $new_ver" --body "Bump version to $new_ver" --assignee PolarianDev
     git checkout master
     git branch -D release/$new_ver
     rm reposilite-$new_ver.tar.*
