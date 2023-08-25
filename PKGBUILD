@@ -29,7 +29,7 @@ build() {
   cd "$pkgname-$pkgver"
   sed -i -r -e "s/(\\s+)version\\s*=.*/\\1version = \"$pkgver\"/" build.gradle.kts
   chmod a+x gradlew
-  JAVA_HOME="/usr/lib/jvm/java-18-openjdk" ./gradlew :reposilite-backend:shadowJar --no-daemon --stacktrace
+  JAVA_HOME="/usr/lib/jvm/java-19-openjdk" ./gradlew :reposilite-backend:shadowJar --no-daemon --stacktrace
 }
 
 package() {
@@ -38,6 +38,6 @@ package() {
   install -Dm 644 $pkgname.tmpfiles "${pkgdir}/usr/lib/tmpfiles.d/$pkgname.conf"
   install -Dm 644 $pkgname-$pkgver/reposilite-backend/build/libs/$pkgname-$pkgver.jar "$pkgdir/usr/share/java/$pkgname/$pkgname.jar"
   install -Dm 644 $pkgname.env "${pkgdir}/etc/reposilite/default.env"
-  /usr/lib/jvm/java-18-openjdk/bin/java -jar "$pkgdir/usr/share/java/$pkgname/$pkgname.jar" -wd "${pkgdir}/etc/reposilite" -gc configuration.cdn
+  /usr/lib/jvm/java-19-openjdk/bin/java -jar "$pkgdir/usr/share/java/$pkgname/$pkgname.jar" -wd "${pkgdir}/etc/reposilite" -gc configuration.cdn
   install -Dm 755 $pkgname.wrapper "${pkgdir}/usr/bin/reposilite"
 }
