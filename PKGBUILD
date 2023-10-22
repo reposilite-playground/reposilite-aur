@@ -1,6 +1,7 @@
 # Maintainer: Polarian <polarian@polarian.dev>
 # Contributor: Charles Leclerc <charles@la-mouette.net>
 
+_javapath="/usr/lib/jvm/java-21-openjdk"
 pkgname=reposilite
 pkgver=3.4.10
 pkgrel=2
@@ -28,7 +29,7 @@ backup=('etc/reposilite/configuration.cdn'
 build() {
   cd "$pkgname-$pkgver"
   sed -i -r -e "s/(\\s+)version\\s*=.*/\\1version = \"$pkgver\"/" build.gradle.kts
-  JAVA_HOME="/usr/lib/jvm/java-19-openjdk" gradle :reposilite-backend:shadowJar --no-daemon --stacktrace
+  JAVA_HOME="$_javapath" gradle :reposilite-backend:shadowJar --no-daemon --stacktrace
 }
 
 package() {
@@ -37,6 +38,6 @@ package() {
   install -Dm 644 $pkgname.tmpfiles "${pkgdir}/usr/lib/tmpfiles.d/$pkgname.conf"
   install -Dm 644 $pkgname-$pkgver/reposilite-backend/build/libs/$pkgname-$pkgver.jar "$pkgdir/usr/share/java/$pkgname/$pkgname.jar"
   install -Dm 644 $pkgname.env "${pkgdir}/etc/reposilite/default.env"
-  /usr/lib/jvm/java-19-openjdk/bin/java -jar "$pkgdir/usr/share/java/$pkgname/$pkgname.jar" -wd "${pkgdir}/etc/reposilite" -gc configuration.cdn
+  $_javapath -jar "$pkgdir/usr/share/java/$pkgname/$pkgname.jar" -wd "${pkgdir}/etc/reposilite" -gc configuration.cdn
   install -Dm 755 $pkgname.wrapper "${pkgdir}/usr/bin/reposilite"
 }
