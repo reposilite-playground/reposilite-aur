@@ -1,7 +1,7 @@
 # Maintainer: Charles Leclerc <charles@la-mouette.net>
 
 pkgname=reposilite
-pkgver=3.5.10
+pkgver=3.5.11
 pkgrel=1
 pkgdesc="Lightweight repository manager for Maven artifacts. It is a simple solution to replace managers like Nexus, Archiva or Artifactory."
 arch=(any)
@@ -14,7 +14,7 @@ source=("https://maven.reposilite.com/releases/com/reposilite/$pkgname/$pkgver/$
         "$pkgname.tmpfiles"
         "$pkgname.env"
         "$pkgname.wrapper")
-sha256sums=('05d22ec9c9a6c59aa20e34df06ce1798886eaaa1ffff4f4595e351ad49f20ff3'
+sha256sums=('30089260959584bbf3f2b8b13064081decca00568160506401b369f81d746913'
             '1e543e7ef39d64ae683156aaa6aad8f164f30de999d15717416410e1750b9a8e'
             '92ccfeff429aa4757ef353677dd99ad7aebe7483d4824706a27250e81efd6323'
             '9587fa49dd66d5f31dee33aa1a9da269a34666b63f62e2550a66c3bc1d397aa7'
